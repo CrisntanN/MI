@@ -1,0 +1,1511 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Medicina Interna | Temario de Repaso</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
+:root{
+  --bg:#eee8df;
+  --surface:#fbf8f2;
+  --surface2:#f5efe7;
+  --surface3:#e9dfd2;
+  --border:#d0c2b2;
+  --border2:#ded2c4;
+  --text:#2d2923;
+  --text2:#51483d;
+  --muted:#887b6d;
+  --a:#4f7072;
+  --a2:#6b765d;
+  --a3:#8d5a50;
+  --a4:#71675b;
+  --a5:#806d55;
+  --cardio:#8a5a50;
+  --met:#6b765d;
+  --mi:#4f7072;
+  --font-body:'Lora',Georgia,serif;
+  --font-ui:'Inter',sans-serif;
+  --font-mono:'IBM Plex Mono',monospace;
+}
+[data-theme="dark"]{
+  --bg:#25221f;
+  --surface:#302c27;
+  --surface2:#2b2723;
+  --surface3:#3b352f;
+  --border:#4c4339;
+  --border2:#5a5045;
+  --text:#e5ddd2;
+  --text2:#d1c7ba;
+  --muted:#9b8f80;
+  --a:#9bb8b7;
+  --a2:#bac39d;
+  --a3:#d39a8f;
+  --a4:#c3b7a8;
+  --a5:#d0bc92;
+  --cardio:#d39a8f;
+  --met:#bac39d;
+  --mi:#9bb8b7;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  min-height:100vh;
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font-body);
+  font-size:16px;
+  line-height:1.7;
+  transition:background .2s,color .2s;
+}
+button,input{font:inherit}
+.hero{
+  max-width:980px;
+  margin:0 auto;
+  padding:18px 16px 13px;
+  border-bottom:1px solid var(--border2);
+}
+.htag{
+  font-family:var(--font-mono);
+  font-size:10px;
+  color:var(--a2);
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:5px;
+}
+.hero h1{
+  font-size:21px;
+  line-height:1.28;
+  font-weight:700;
+  letter-spacing:0;
+}
+.hero p{
+  color:var(--muted);
+  font-family:var(--font-ui);
+  font-size:12px;
+  margin-top:5px;
+}
+.chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
+.chip{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:4px;
+  color:var(--text2);
+  font-family:var(--font-mono);
+  font-size:10px;
+  padding:2px 7px;
+}
+.srchbar{
+  background:var(--surface);
+  border-bottom:1px solid var(--border2);
+  padding:8px 0;
+  position:relative;
+  z-index:500;
+}
+.srch-inner{
+  max-width:980px;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:0 16px;
+}
+.srch-wrap{position:relative;flex:1}
+.srch-icon{
+  position:absolute;
+  left:11px;
+  top:50%;
+  transform:translateY(-50%);
+  color:var(--muted);
+  font-family:var(--font-ui);
+  font-size:13px;
+  pointer-events:none;
+}
+.srch-input{
+  width:100%;
+  min-height:36px;
+  background:var(--bg);
+  border:1.5px solid var(--border2);
+  border-radius:6px;
+  color:var(--text);
+  outline:none;
+  padding:8px 12px 8px 35px;
+  font-family:var(--font-ui);
+  font-size:14px;
+}
+.srch-input:focus{border-color:var(--a);box-shadow:0 0 0 3px rgba(111,90,68,.13)}
+.srch-count{
+  min-width:86px;
+  text-align:right;
+  white-space:nowrap;
+  color:var(--muted);
+  font-family:var(--font-ui);
+  font-size:12px;
+}
+.srch-results{
+  position:absolute;
+  top:calc(100% + 5px);
+  left:0;
+  right:0;
+  max-height:360px;
+  overflow:auto;
+  display:none;
+  background:var(--surface);
+  border:1.5px solid var(--border2);
+  border-radius:10px;
+  box-shadow:0 8px 24px rgba(0,0,0,.13);
+}
+.srch-result-item{
+  cursor:pointer;
+  padding:10px 14px;
+  border-bottom:1px solid var(--border);
+}
+.srch-result-item:hover{background:var(--surface2)}
+.srch-result-item:last-child{border-bottom:none}
+.srch-result-week{
+  color:var(--a5);
+  font-family:var(--font-mono);
+  font-size:10px;
+  letter-spacing:.8px;
+  text-transform:uppercase;
+}
+.srch-result-title{
+  color:var(--text);
+  font-family:var(--font-ui);
+  font-size:14px;
+  font-weight:600;
+}
+.srch-result-snip{
+  color:var(--muted);
+  font-size:12px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+mark{background:rgba(79,120,148,.24);color:var(--text);border-radius:2px;padding:0 2px}
+.wnav{
+  position:sticky;
+  top:0;
+  z-index:300;
+  background:var(--surface);
+  border-bottom:2px solid var(--border2);
+  box-shadow:0 2px 8px rgba(0,0,0,.07);
+}
+.wnav-inner{
+  max-width:100%;
+  margin:0 auto;
+  padding:0 10px;
+  display:flex;
+  align-items:center;
+  gap:2px;
+  overflow-x:auto;
+  scrollbar-width:thin;
+}
+.mtab,.wbtn,.tbtn{
+  flex-shrink:0;
+  cursor:pointer;
+  background:none;
+  border:1px solid transparent;
+  border-radius:4px;
+  color:var(--muted);
+  font-family:var(--font-ui);
+  white-space:nowrap;
+  transition:background .15s,color .15s,border-color .15s;
+}
+.mtab{
+  margin:6px 3px 6px 0;
+  padding:6px 13px;
+  background:var(--surface2);
+  border-color:var(--border2);
+  font-size:11px;
+  font-weight:700;
+}
+.mtab:hover,.wbtn:hover,.tbtn:hover{background:var(--surface3);color:var(--text);border-color:var(--border)}
+.mtab.active{background:var(--a);border-color:var(--a);color:#fff}
+[data-theme="dark"] .mtab.active{color:#1e1e1c}
+.wbtn{
+  margin:3px 1px;
+  padding:5px 9px;
+  font-size:10px;
+  font-weight:500;
+}
+.wbtn.active{
+  background:rgba(111,90,68,.13);
+  border-color:rgba(111,90,68,.30);
+  color:var(--a);
+  font-weight:700;
+}
+.wnav-sep{
+  width:1px;
+  align-self:stretch;
+  background:var(--border2);
+  margin:6px 8px;
+  flex-shrink:0;
+}
+.theme-switch-wrap{
+  margin-left:auto;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex-shrink:0;
+  padding-right:4px;
+}
+.theme-switch-label{
+  color:var(--text2);
+  font-family:var(--font-ui);
+  font-size:12px;
+  font-weight:600;
+  white-space:nowrap;
+}
+.theme-switch{position:relative;width:52px;height:28px;display:block;flex-shrink:0}
+.theme-switch input{opacity:0;width:0;height:0;position:absolute}
+.theme-switch-track{
+  position:absolute;
+  inset:0;
+  border:2px solid var(--border2);
+  border-radius:14px;
+  background:linear-gradient(90deg,#e3b54b 50%,#1e2d5a 50%);
+  cursor:pointer;
+}
+.theme-switch-track:before{
+  content:'☀';
+  position:absolute;
+  left:4px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:12px;
+}
+.theme-switch-track:after{
+  content:'☽';
+  position:absolute;
+  right:5px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:11px;
+  color:#d8e2ff;
+}
+.theme-switch-thumb{
+  position:absolute;
+  top:3px;
+  left:3px;
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  background:#fff;
+  box-shadow:0 1px 4px rgba(0,0,0,.32);
+  pointer-events:none;
+  transition:transform .25s cubic-bezier(.4,0,.2,1);
+}
+.theme-switch input:checked ~ .theme-switch-thumb{transform:translateX(24px)}
+.tnav-wrap{max-width:980px;margin:0 auto}
+.tnav{
+  display:flex;
+  overflow-x:auto;
+  background:var(--surface);
+  border-bottom:1px solid var(--border);
+  padding:0 12px;
+  scrollbar-width:none;
+}
+.tnav::-webkit-scrollbar{display:none}
+.tbtn{
+  margin:3px 1px;
+  padding:4px 9px;
+  font-size:10px;
+}
+.tbtn.active{
+  background:rgba(111,90,68,.13);
+  border-color:rgba(111,90,68,.30);
+  color:var(--a);
+  font-weight:700;
+}
+.pw{max-width:980px;margin:0 auto;padding:0 16px 84px}
+.wsec,.tpane{display:none}
+.wsec.active,.tpane.active{display:block}
+.wsec{content-visibility:auto;contain-intrinsic-size:1px 900px}
+.wsec.active{content-visibility:visible}
+.study-hero{
+  margin:18px 0 13px;
+  padding:13px 14px;
+  border:1px solid var(--border);
+  border-left:4px solid var(--a);
+  border-radius:6px;
+  background:linear-gradient(135deg,rgba(128,109,85,.10),rgba(79,112,114,.04));
+}
+.study-hero.cardio{border-left-color:var(--cardio);background:linear-gradient(135deg,rgba(138,90,80,.09),rgba(128,109,85,.05))}
+.study-hero.met{border-left-color:var(--met);background:linear-gradient(135deg,rgba(107,118,93,.10),rgba(128,109,85,.05))}
+.study-hero.mi{border-left-color:var(--mi)}
+.wlabel{
+  color:var(--muted);
+  font-family:var(--font-mono);
+  font-size:9px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+.wtitle{
+  color:var(--a);
+  font-family:var(--font-mono);
+  font-size:17px;
+  font-weight:700;
+  line-height:1.35;
+  margin-top:3px;
+}
+.study-hero.cardio .wtitle{color:var(--cardio)}
+.study-hero.met .wtitle{color:var(--met)}
+.mu{
+  color:var(--muted);
+  font-family:var(--font-ui);
+  font-size:12px;
+}
+.topic-strip{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px}
+.b{
+  display:inline-block;
+  margin:2px 2px 2px 0;
+  padding:2px 7px;
+  border-radius:3px;
+  font-family:var(--font-mono);
+  font-size:11px;
+  font-weight:700;
+}
+.bb{background:#ddeaf5;color:#1a4a7a;border:1px solid #7aaad0}
+.bg{background:#d4eed8;color:#1a5a2a;border:1px solid #6aaa74}
+.br{background:#fad4d0;color:#8a1a10;border:1px solid #d07070}
+.bp{background:#e8d8f5;color:#4a1a7a;border:1px solid #9a70c0}
+.bo{background:#faecd0;color:#6a3a00;border:1px solid #c09040}
+[data-theme="dark"] .bb{background:#1c2e4a;color:#90c8f0;border-color:#3a6a9a}
+[data-theme="dark"] .bg{background:#1a2e1f;color:#80d690;border-color:#2a6a3a}
+[data-theme="dark"] .br{background:#321d1c;color:#f5a094;border-color:#7a3737}
+[data-theme="dark"] .bp{background:#271c39;color:#ceb0ef;border-color:#5b407c}
+[data-theme="dark"] .bo{background:#302415;color:#e0bc76;border-color:#765529}
+h2{
+  color:var(--a);
+  font-family:var(--font-mono);
+  font-size:14px;
+  font-weight:700;
+  margin:21px 0 9px;
+  padding-bottom:4px;
+  border-bottom:1px solid var(--border);
+}
+h3{
+  color:var(--a5);
+  font-family:var(--font-mono);
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.8px;
+  text-transform:uppercase;
+  margin:14px 0 6px;
+}
+.card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:5px;
+  padding:12px;
+  margin-bottom:10px;
+}
+.ct{
+  color:var(--a2);
+  font-family:var(--font-mono);
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:1px;
+  margin-bottom:6px;
+  text-transform:uppercase;
+}
+.module-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+  margin:10px 0 14px;
+}
+.module-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-left:3px solid var(--a);
+  border-radius:6px;
+  padding:10px 11px;
+}
+.module-card strong{
+  display:block;
+  color:var(--a);
+  font-family:var(--font-mono);
+  font-size:11px;
+  margin-bottom:3px;
+  text-transform:uppercase;
+}
+.module-card span{
+  color:var(--muted);
+  display:block;
+  font-family:var(--font-ui);
+  font-size:12px;
+  line-height:1.45;
+}
+.subtopic-list{display:grid;gap:8px;margin:10px 0 14px}
+.subtopic{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-left:3px solid var(--a);
+  border-radius:5px;
+  padding:10px 12px;
+}
+.subtopic.cardio{border-left-color:var(--cardio)}
+.subtopic.met{border-left-color:var(--met)}
+.subtopic.mi{border-left-color:var(--mi)}
+.subtopic-title{
+  display:flex;
+  align-items:flex-start;
+  gap:8px;
+  color:var(--text);
+  font-family:var(--font-ui);
+  font-size:14px;
+  font-weight:700;
+  line-height:1.35;
+}
+.subtopic-n{
+  min-width:30px;
+  color:var(--muted);
+  font-family:var(--font-mono);
+  font-size:10px;
+  padding-top:2px;
+}
+.placeholder{
+  margin-top:7px;
+  border-top:1px dashed var(--border2);
+  padding-top:7px;
+  color:var(--muted);
+  font-family:var(--font-ui);
+  font-size:12px;
+}
+.index-list{display:grid;gap:6px;margin:10px 0 16px}
+.index-row{
+  width:100%;
+  text-align:left;
+  display:grid;
+  grid-template-columns:minmax(42px,auto) 1fr auto;
+  align-items:center;
+  gap:10px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-left:3px solid var(--a);
+  border-radius:5px;
+  color:var(--text);
+  padding:10px 12px;
+  cursor:pointer;
+}
+.index-row:hover{background:var(--surface2);border-color:var(--border)}
+.index-row.met{border-left-color:var(--met)}
+.index-row.mi{border-left-color:var(--mi)}
+.index-n{
+  color:var(--muted);
+  font-family:var(--font-mono);
+  font-size:10px;
+  font-weight:700;
+}
+.index-title{
+  font-family:var(--font-ui);
+  font-size:14px;
+  font-weight:700;
+  line-height:1.35;
+}
+.index-action{
+  color:var(--muted);
+  font-family:var(--font-mono);
+  font-size:10px;
+}
+.topic-page-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+  margin:18px 0 12px;
+  padding-bottom:10px;
+  border-bottom:1px solid var(--border);
+}
+.topic-page-kicker{
+  color:var(--muted);
+  font-family:var(--font-mono);
+  font-size:9px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+.topic-page-title{
+  color:var(--text);
+  font-size:22px;
+  font-weight:700;
+  line-height:1.22;
+}
+.back-btn{
+  flex-shrink:0;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:4px;
+  color:var(--text2);
+  cursor:pointer;
+  font-family:var(--font-ui);
+  font-size:12px;
+  font-weight:700;
+  padding:6px 9px;
+}
+.back-btn:hover{background:var(--surface2)}
+.empty-note{
+  background:var(--surface2);
+  border:1px dashed var(--border);
+  border-radius:5px;
+  color:var(--muted);
+  font-family:var(--font-ui);
+  font-size:13px;
+  margin:10px 0 14px;
+  padding:12px;
+}
+.study-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:10px 0 14px}
+.study-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-left:3px solid var(--a);
+  border-radius:5px;
+  padding:11px 12px;
+}
+.study-card strong{
+  display:block;
+  color:var(--a);
+  font-family:var(--font-mono);
+  font-size:10px;
+  letter-spacing:.7px;
+  margin-bottom:4px;
+  text-transform:uppercase;
+}
+.study-card p,.study-card li{font-family:var(--font-ui);font-size:13px;line-height:1.55}
+.study-card ul{padding-left:18px}
+.tw{overflow-x:auto;margin:10px 0 14px}
+table{width:100%;border-collapse:collapse;font-family:var(--font-ui);font-size:13px}
+th{
+  background:var(--surface2);
+  border:1px solid var(--border);
+  color:var(--a);
+  font-family:var(--font-mono);
+  font-size:10px;
+  letter-spacing:.5px;
+  padding:7px 8px;
+  text-align:left;
+  text-transform:uppercase;
+}
+td{border:1px solid var(--border);padding:7px 8px;vertical-align:top;line-height:1.55}
+tr:nth-child(even) td{background:rgba(128,109,85,.04)}
+.dl{list-style:none;padding:0;margin:8px 0}
+.dl li{position:relative;padding:4px 0 4px 16px;font-family:var(--font-ui);font-size:13px;line-height:1.55}
+.dl li:before{content:'›';position:absolute;left:0;color:var(--a);font-family:var(--font-mono);font-weight:700}
+.flow{display:flex;flex-wrap:wrap;gap:5px;align-items:center;margin:10px 0 14px}
+.fs{
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-radius:4px;
+  color:var(--text2);
+  font-family:var(--font-mono);
+  font-size:11px;
+  padding:6px 9px;
+}
+.fa{color:var(--a5);font-family:var(--font-mono);font-weight:700}
+.pearl{
+  background:rgba(79,112,114,.08);
+  border:1px solid rgba(79,112,114,.24);
+  border-left:3px solid var(--a);
+  border-radius:0 5px 5px 0;
+  font-family:var(--font-ui);
+  font-size:13px;
+  line-height:1.55;
+  margin:10px 0 14px;
+  padding:9px 12px;
+}
+.pearl strong{
+  display:block;
+  color:var(--a);
+  font-family:var(--font-mono);
+  font-size:9px;
+  letter-spacing:1px;
+  margin-bottom:3px;
+  text-transform:uppercase;
+}
+.exam-box{
+  background:rgba(128,109,85,.09);
+  border:1px solid rgba(128,109,85,.28);
+  border-radius:5px;
+  margin:10px 0 14px;
+  padding:11px 12px;
+}
+.exam-box .ct{color:var(--a5)}
+.glossary{
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-top:3px solid var(--a5);
+  border-radius:0 0 5px 5px;
+  margin:16px 0 8px;
+  padding:11px 12px 12px;
+}
+.glossary-title{
+  color:var(--a5);
+  font-family:var(--font-mono);
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.8px;
+  margin-bottom:8px;
+  text-transform:uppercase;
+}
+.glossary-grid{
+  display:grid;
+  gap:7px 14px;
+  grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
+}
+.glossary-item{
+  line-height:1.45;
+  min-width:0;
+}
+.glossary-term{
+  color:var(--a);
+  display:block;
+  font-family:var(--font-mono);
+  font-size:12px;
+  font-weight:700;
+}
+.glossary-def{
+  color:var(--muted);
+  display:block;
+  font-family:var(--font-ui);
+  font-size:12px;
+}
+@media(max-width:720px){
+  .study-grid{grid-template-columns:1fr}
+  table{font-size:12px}
+  .glossary-grid{grid-template-columns:1fr}
+}
+.nested{
+  margin:7px 0 0 38px;
+  display:grid;
+  gap:5px;
+}
+.nested .subtopic{
+  padding:8px 10px;
+  background:var(--surface2);
+}
+.al{
+  border-left:3px solid var(--a5);
+  background:rgba(138,115,81,.08);
+  border-radius:0 4px 4px 0;
+  margin:10px 0;
+  padding:9px 12px;
+  color:var(--text2);
+  font-family:var(--font-ui);
+  font-size:13px;
+  line-height:1.55;
+}
+.al strong{
+  display:block;
+  color:var(--a5);
+  font-family:var(--font-mono);
+  font-size:9px;
+  letter-spacing:1px;
+  margin-bottom:2px;
+  text-transform:uppercase;
+}
+.bbar{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  z-index:300;
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  background:var(--surface);
+  border-top:1px solid var(--border2);
+  color:var(--muted);
+  font-family:var(--font-ui);
+  font-size:10px;
+  padding:5px 16px;
+}
+.sd{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--a2);margin-right:4px}
+@media(max-width:720px){
+  body{font-size:16px}
+  .hero h1{font-size:20px}
+  .srch-inner{padding:0 12px}
+  .srch-count{display:none}
+  .module-grid{grid-template-columns:1fr}
+  .nested{margin-left:12px}
+  .theme-switch-label{display:none}
+}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="htag">► Clínica Medicina Interna</div>
+  <h1>Temario de Repaso: Medicina Interna, Cardiología y Metabólica</h1>
+  <p>Esqueleto de trabajo sin contenido: organizado por materia, semanas y subtemas para ir llenando con tus resúmenes.</p>
+  <div class="chips">
+    <span class="chip">Cardiología</span>
+    <span class="chip">Endocrino-Metabólica</span>
+    <span class="chip">Gastroenterología</span>
+    <span class="chip">Neumología</span>
+    <span class="chip">Nefrología</span>
+    <span class="chip">Reumatología</span>
+    <span class="chip">Hematología</span>
+  </div>
+</div>
+
+<div class="srchbar" id="srchbar">
+  <div class="srch-inner">
+    <div class="srch-wrap">
+      <span class="srch-icon">⌕</span>
+      <input autocomplete="off" class="srch-input" id="srch" placeholder="Buscar tema o subtema...  (ej: cardiopatía, diabetes, nefrología, anemia)" spellcheck="false" type="text" />
+      <div class="srch-results" id="srch-results"></div>
+    </div>
+    <span class="srch-count" id="srch-count"></span>
+  </div>
+</div>
+
+<div class="wnav">
+  <div class="wnav-inner">
+    <button type="button" class="mtab active" id="mtab-cardio" onclick="showMateria('cardio')">Cardio y Metabólica</button>
+    <button type="button" class="mtab" id="mtab-mi" onclick="showMateria('mi')">Medicina Interna</button>
+    <div class="wnav-sep"></div>
+    <div id="cardio-sessions" style="display:flex;gap:1px;"></div>
+    <div id="mi-sessions" style="display:none;gap:1px;"></div>
+    <div class="theme-switch-wrap">
+      <span class="theme-switch-label" id="theme-lbl">☀ Claro</span>
+      <label class="theme-switch" title="Cambiar tema claro / oscuro">
+        <input id="themeToggle" onchange="toggleTheme(this)" type="checkbox" />
+        <div class="theme-switch-track"></div>
+        <div class="theme-switch-thumb"></div>
+      </label>
+    </div>
+  </div>
+</div>
+
+<div class="tnav-wrap"><div class="tnav" id="subnav"></div></div>
+<main class="pw" id="content"></main>
+
+<div class="bbar">
+  <span><span class="sd"></span>Medicina Interna · plantilla sin contenido</span>
+  <span id="bar-current">Cardio y Metabólica</span>
+</div>
+
+<script>
+const syllabus = {
+  cardio: {
+    label: 'Cardio y Metabólica',
+    sessions: [
+      {
+        id:'c1',
+        nav:'S1',
+        area:'cardio',
+        label:'Semana 1',
+        title:'Síndromes coronarios crónicos',
+        chips:['Cardiología','Semana 1','AHA/ACC 2023','ESC 2024'],
+        topics:[
+          {n:'a',title:'Diagnóstico',content:`
+            <div class="pearl"><strong>Idea central</strong>El síndrome coronario crónico (SCC/CCD) no es “angina estable” únicamente: incluye enfermedad coronaria obstructiva o no obstructiva, con o sin infarto/revascularización previa, isquemia demostrada por pruebas y síndromes de angina por mecanismos como aterosclerosis, vasoespasmo o disfunción microvascular.</div>
+            <h3>Evaluación inicial: primero descartar lo agudo</h3>
+            <div class="flow"><div class="fs">Síntomas</div><div class="fa">→</div><div class="fs">ECG 12 derivaciones</div><div class="fa">→</div><div class="fs">Troponina si sospecha SCA</div><div class="fa">→</div><div class="fs">Eco y probabilidad clínica</div><div class="fa">→</div><div class="fs">Prueba anatómica o funcional</div></div>
+            <div class="study-grid">
+              <div class="study-card"><strong>Historia clínica dirigida</strong><p>Caracteriza aparición, duración, tipo, localización, irradiación, desencadenantes, alivio con reposo/nitratos y horario. Documenta factores de riesgo: tabaquismo, HTA, dislipidemia, diabetes, antecedente familiar, ERC, enfermedad vascular periférica e inflamación sistémica.</p></div>
+              <div class="study-card"><strong>Equivalentes anginosos</strong><p>Disnea de esfuerzo, fatiga, mareo inducido por esfuerzo o estrés emocional, dolor en mandíbula, cuello, espalda alta o brazos. En mujeres, adultos mayores y diabéticos el cuadro puede ser menos “típico”.</p></div>
+            </div>
+            <h3>Pruebas basales</h3>
+            <div class="tw"><table><tr><th>Estudio</th><th>Para qué sirve</th><th>Perla de examen</th></tr><tr><td>ECG en reposo</td><td>Busca Q patológicas, BRI, alteraciones ST-T, FA o datos indirectos de cardiopatía estructural.</td><td>Un ECG normal no excluye SCC; cambios dinámicos durante dolor obligan a pensar en isquemia activa.</td></tr><tr><td>Laboratorio</td><td>BH, creatinina/TFGe, glucosa/HbA1c, perfil lipídico, función tiroidea si procede.</td><td>Troponina de alta sensibilidad se usa si hay sospecha de inestabilidad o SCA, no como tamiz rutinario aislado de SCC.</td></tr><tr><td>Ecocardiograma basal</td><td>FEVI, movilidad segmentaria, valvulopatía, hipertrofia, diagnósticos alternativos.</td><td>FEVI reducida o IC cambia el umbral para angiografía invasiva y revascularización.</td></tr></table></div>
+            <h3>Probabilidad clínica y elección de prueba</h3>
+            <ul class="dl"><li>ESC 2024 favorece estimar probabilidad clínica ponderada por factores de riesgo: edad, sexo, síntomas y número de factores de riesgo; puede ajustarse con calcio coronario, ECG, eco y hallazgos vasculares.</li><li>Si la probabilidad es muy baja (aprox. ≤5%), puede diferirse prueba adicional si no hay datos de alarma.</li><li>Si la probabilidad es baja-moderada, la angio-TAC coronaria es muy útil para descartar enfermedad obstructiva y detectar placa no obstructiva.</li><li>Si la probabilidad es moderada-alta, si se busca correlacionar síntomas con isquemia o si hay enfermedad conocida, se prefieren pruebas funcionales: eco estrés, SPECT/PET, RMC estrés.</li><li>PET es especialmente valiosa para flujo miocárdico absoluto y reserva de flujo; RMC de perfusión es alternativa sólida.</li></ul>
+            <div class="tw"><table><tr><th>Situación</th><th>Prueba preferida</th><th>Razonamiento</th></tr><tr><td>Paciente sintomático, probabilidad >5%, sin CAD conocida</td><td>Angio-TAC o imagen funcional</td><td>Primera línea no invasiva según probabilidad, disponibilidad y características del paciente.</td></tr><tr><td>Probabilidad baja-moderada (>5-50%)</td><td>Angio-TAC</td><td>Excelente para descartar EAC obstructiva y ver placa.</td></tr><tr><td>Angio-TAC no concluyente o estenosis sin relevancia clara</td><td>Imagen funcional</td><td>Determina si la lesión produce isquemia.</td></tr><tr><td>Síntomas severos refractarios, angina a bajo esfuerzo, alto riesgo o probabilidad muy alta</td><td>Coronariografía invasiva</td><td>Permite diagnóstico y fisiología invasiva antes de revascularizar.</td></tr><tr><td>Coronarias no obstructivas con síntomas persistentes</td><td>Considerar ANOCA/INOCA</td><td>Buscar vasoespasmo y disfunción microvascular; puede requerir pruebas funcionales coronarias invasivas.</td></tr></table></div>
+          `},
+          {n:'b',title:'Clasificación',content:`
+            <h3>Fenotipos clínicos que entran en SCC/CCD</h3>
+            <div class="tw"><table><tr><th>Fenotipo</th><th>Qué significa</th><th>Ejemplo típico</th></tr><tr><td>EAC obstructiva estable</td><td>Placa epicárdica con estenosis significativa y síntomas crónicos.</td><td>Angina de esfuerzo que mejora con reposo o nitrato.</td></tr><tr><td>EAC no obstructiva</td><td>Placa coronaria sin estenosis significativa pero con riesgo aterotrombótico.</td><td>Angio-TAC con placa <50% y síntomas o alto riesgo.</td></tr><tr><td>Postinfarto o postrevascularización</td><td>Paciente fuera de la fase aguda, con riesgo crónico residual.</td><td>IAM previo, PCI o CABG, con o sin angina.</td></tr><tr><td>Isquemia documentada por pruebas</td><td>Isquemia en imagen funcional aunque la anatomía no sea obvia.</td><td>Perfusión anormal en PET/RMC/SPECT.</td></tr><tr><td>ANOCA/INOCA</td><td>Angina o isquemia sin enfermedad coronaria obstructiva.</td><td>Vasoespasmo epicárdico, espasmo microvascular, reserva de flujo baja o IMR alto.</td></tr></table></div>
+            <h3>Gravedad de síntomas: Canadian Cardiovascular Society</h3>
+            <div class="tw"><table><tr><th>Clase</th><th>Descripción práctica</th><th>Cómo reconocerla</th></tr><tr><td>I</td><td>Angina solo con esfuerzo intenso/prolongado.</td><td>No limita actividad ordinaria.</td></tr><tr><td>II</td><td>Limitación ligera.</td><td>Angina al caminar rápido, frío, estrés, después de comer o subir escaleras rápido.</td></tr><tr><td>III</td><td>Limitación marcada.</td><td>Angina al caminar 1-2 cuadras o subir un tramo normal.</td></tr><tr><td>IV</td><td>Angina en reposo o con mínimo esfuerzo.</td><td>Alarma: descartar inestabilidad/SCA.</td></tr></table></div>
+            <h3>Estratificación pronóstica</h3>
+            <div class="study-grid">
+              <div class="study-card"><strong>Riesgo anual AHA/ACC</strong><ul><li>Bajo: <1% de muerte CV o IM no fatal.</li><li>Intermedio: 1-3% anual.</li><li>Alto: >3% anual.</li></ul></div>
+              <div class="study-card"><strong>Datos de alto riesgo</strong><ul><li>FEVI reducida o insuficiencia cardiaca.</li><li>Tronco coronario izquierdo significativo.</li><li>Enfermedad de 3 vasos o DA proximal severa.</li><li>Isquemia moderada-severa extensa.</li><li>Diabetes, ERC, enfermedad vascular periférica o angina refractaria.</li></ul></div>
+            </div>
+            <div class="pearl"><strong>Perla</strong>La severidad de isquemia por sí sola no siempre identifica quién vive más con revascularización temprana. La anatomía de alto riesgo, la FEVI, la carga aterosclerótica, diabetes, enfermedad multivaso y la carga sintomática son los que cambian decisiones.</div>
+          `},
+          {n:'c',title:'Manejo farmacológico e invasivo',content:`
+            <h3>Objetivos del tratamiento</h3>
+            <div class="study-grid">
+              <div class="study-card"><strong>Modificar pronóstico</strong><p>Reducir muerte cardiovascular, infarto, ictus, hospitalizaciones y progresión aterosclerótica: estilo de vida, estatinas, antiagregación, control de PA/DM, abandono de tabaco, rehabilitación cardiaca y fármacos cardiometabólicos seleccionados.</p></div>
+              <div class="study-card"><strong>Controlar síntomas</strong><p>Disminuir angina/isquemia y mejorar calidad de vida: betabloqueador o calcioantagonista, nitratos, ranolazina y revascularización si hay anatomía significativa y síntomas refractarios.</p></div>
+            </div>
+            <h3>Tratamiento modificador de enfermedad</h3>
+            <div class="tw"><table><tr><th>Intervención</th><th>Recomendación práctica</th><th>Notas clave</th></tr><tr><td>Estilo de vida</td><td>Dieta cardioprotectora, ejercicio aeróbico + resistencia, reducir sedentarismo, peso saludable, sueño, vacunas, cese de tabaco.</td><td>Rehabilitación cardiaca en elegibles reduce morbilidad y mortalidad.</td></tr><tr><td>Antiagregante</td><td>Aspirina 75-100 mg/día si EAC obstructiva/aterosclerótica y sin anticoagulación.</td><td>Clopidogrel puede usarse si intolerancia a aspirina; ESC acepta aspirina o clopidogrel como monoterapia crónica.</td></tr><tr><td>Tras PCI electiva</td><td>DAPT aspirina + clopidogrel, típicamente 6 meses; acortar a 1-3 meses si alto sangrado y bajo riesgo isquémico.</td><td>Luego monoterapia; individualiza con riesgo trombótico vs sangrado.</td></tr><tr><td>Alto riesgo trombótico</td><td>Considerar estrategia antitrombótica intensificada si bajo riesgo de sangrado.</td><td>Ejemplo AHA/ACC: rivaroxabán 2.5 mg c/12 h + aspirina en seleccionados de alto riesgo.</td></tr><tr><td>Lípidos</td><td>Estatina de alta intensidad como base.</td><td>ESC: LDL <55 mg/dL y reducción ≥50%; añadir ezetimiba y PCSK9 si no alcanza. AHA/ACC mantiene estatina como primera línea y adyuvantes en seleccionados.</td></tr><tr><td>IECA/ARA-II</td><td>Útiles en HTA, diabetes, ERC, FEVI reducida o alto riesgo.</td><td>Menos beneficio claro en bajo riesgo con FEVI preservada y sin comorbilidad.</td></tr><tr><td>SGLT2/GLP-1</td><td>Usar en grupos seleccionados con CCD y diabetes, IC, ERC u obesidad/riesgo cardiometabólico.</td><td>AHA/ACC destaca beneficio incluso en algunos grupos sin diabetes.</td></tr></table></div>
+            <h3>Antianginosos</h3>
+            <div class="tw"><table><tr><th>Fármaco</th><th>Uso</th><th>Cuidado</th></tr><tr><td>Betabloqueador</td><td>Primera línea para angina; pronóstico si FEVI ≤40-50% o IM reciente/otra indicación.</td><td>No mejora MACE a largo plazo si no hay IM reciente, FEVI reducida u otra indicación. Evitar bradicardia, bloqueo AV, broncoespasmo severo.</td></tr><tr><td>Calcioantagonista</td><td>Primera línea alternativa o combinable. DHP: amlodipino; no DHP: verapamilo/diltiazem.</td><td>No DHP evítalos en disfunción sistólica o con betabloqueador si riesgo de bradicardia/bloqueo.</td></tr><tr><td>Nitrato corto</td><td>Alivio inmediato o profilaxis antes de esfuerzo.</td><td>No combinar con inhibidores PDE-5; educar sobre uso y cuándo acudir a urgencias.</td></tr><tr><td>Nitrato largo</td><td>Agregar si síntomas persistentes.</td><td>Necesita intervalo libre de nitrato para evitar tolerancia.</td></tr><tr><td>Ranolazina</td><td>Si persiste angina pese a BB/CCB/nitrato o si PA/FC limitan otros fármacos.</td><td>Vigilar QT e interacciones CYP3A.</td></tr></table></div>
+            <h3>Revascularización</h3>
+            <ul class="dl"><li>La terapia médica óptima es la base para casi todos los pacientes.</li><li>Revascularizar mejora síntomas cuando hay angina limitante pese a manejo médico y lesiones significativas revascularizables.</li><li>CABG mejora supervivencia sobre tratamiento médico en tronco izquierdo significativo y enfermedad multivaso con disfunción sistólica severa (FEVI ≤35%).</li><li>En enfermedad multivaso compleja o difusa, especialmente SYNTAX >33, CABG suele preferirse sobre PCI.</li><li>En diabetes + multivaso con DA involucrada, CABG con mamaria interna a DA se prefiere para reducir mortalidad y nueva revascularización.</li><li>Si la estenosis es intermedia, no decidas solo por el ojo: usa FFR ≤0.80 o iFR ≤0.89 para guiar PCI.</li></ul>
+            <div class="pearl"><strong>Lo que más preguntan</strong>PCI en SCC suele ser para síntomas y reducción de eventos seleccionados, no para “curar” riesgo global. El pronóstico mejora sobre todo con prevención intensiva, y con CABG en anatomía de alto riesgo.</div>
+          `},
+          {n:'d',title:'Algoritmos de manejo',content:`
+            <h3>1. Paciente con dolor torácico crónico</h3>
+            <div class="flow"><div class="fs">Dolor/disnea de esfuerzo</div><div class="fa">→</div><div class="fs">Descartar SCA</div><div class="fa">→</div><div class="fs">ECG + labs + eco</div><div class="fa">→</div><div class="fs">Probabilidad clínica</div><div class="fa">→</div><div class="fs">Angio-TAC o imagen funcional</div></div>
+            <div class="exam-box"><div class="ct">Si parece agudo</div><p>Dolor en reposo prolongado, cambios dinámicos de ST, troponina elevada/dinámica, inestabilidad hemodinámica o arritmia grave = no es SCC operativo: manejar como síndrome coronario agudo.</p></div>
+            <h3>2. Elección de prueba</h3>
+            <div class="tw"><table><tr><th>Probabilidad/escenario</th><th>Conducta</th></tr><tr><td>Muy baja y sin banderas rojas</td><td>Diferir pruebas coronarias; tratar factores de riesgo y buscar causas no cardiacas.</td></tr><tr><td>Baja-moderada</td><td>Angio-TAC para descartar EAC obstructiva y detectar placa.</td></tr><tr><td>Moderada-alta o enfermedad conocida</td><td>Imagen funcional para isquemia: eco estrés, PET/SPECT o RMC.</td></tr><tr><td>Resultado no concluyente</td><td>Prueba secuencial: funcional después de angio-TAC anormal o angio-TAC después de funcional no definitiva.</td></tr><tr><td>Muy alta, alto riesgo, síntomas severos refractarios</td><td>Coronariografía invasiva con fisiología si hay lesiones intermedias.</td></tr></table></div>
+            <h3>3. Tratamiento escalonado de angina</h3>
+            <div class="flow"><div class="fs">Nitroglicerina SL PRN</div><div class="fa">+</div><div class="fs">BB o CCB</div><div class="fa">→</div><div class="fs">Agregar 2º antianginoso</div><div class="fa">→</div><div class="fs">Ranolazina/nitrato largo según PA-FC</div><div class="fa">→</div><div class="fs">Revascularizar si refractaria + lesión significativa</div></div>
+            <h3>4. ANOCA/INOCA</h3>
+            <div class="tw"><table><tr><th>Endotipo sospechado</th><th>Pista</th><th>Manejo orientativo</th></tr><tr><td>Vasoespasmo epicárdico</td><td>Dolor en reposo, variación circadiana, cambios ST transitorios, respuesta a nitrato.</td><td>Calcioantagonista como base; nitratos; evitar desencadenantes.</td></tr><tr><td>Angina microvascular estructural</td><td>Coronarias no obstructivas, CFR baja o IMR alto.</td><td>Betabloqueador o CCB, ranolazina, IECA/ARA-II, estatina y control intensivo de riesgo.</td></tr><tr><td>Espasmo microvascular</td><td>Síntomas con prueba de acetilcolina positiva sin espasmo epicárdico dominante.</td><td>Calcioantagonista; manejo individualizado.</td></tr></table></div>
+            <h3>5. Seguimiento</h3>
+            <ul class="dl"><li>Revalorar al menos una vez al año: síntomas, función, calidad de vida, adherencia, PA, lípidos, glucosa, tabaco, actividad física y efectos adversos.</li><li>No hacer pruebas anatómicas o funcionales periódicas si no cambian síntomas ni estado funcional.</li><li>Repetir evaluación si aparece angina nueva/progresiva, disnea inexplicada, IC, arritmia, síncope o deterioro funcional.</li></ul>
+            <div class="glossary">
+              <div class="glossary-title">Glosario rapido</div>
+              <div class="glossary-grid">
+                <div class="glossary-item"><span class="glossary-term">SCC</span><span class="glossary-def">Sindromes coronarios cronicos.</span></div>
+                <div class="glossary-item"><span class="glossary-term">CCD</span><span class="glossary-def">Chronic coronary disease; termino AHA/ACC para enfermedad coronaria cronica.</span></div>
+                <div class="glossary-item"><span class="glossary-term">EAC / CAD</span><span class="glossary-def">Enfermedad arterial coronaria / coronary artery disease.</span></div>
+                <div class="glossary-item"><span class="glossary-term">SCA / ACS</span><span class="glossary-def">Sindrome coronario agudo; cambia el algoritmo y exige manejo urgente.</span></div>
+                <div class="glossary-item"><span class="glossary-term">MACE</span><span class="glossary-def">Eventos cardiovasculares adversos mayores, como muerte CV, infarto o EVC.</span></div>
+                <div class="glossary-item"><span class="glossary-term">Angio-TAC / CCTA</span><span class="glossary-def">Tomografia coronaria; prueba anatomica no invasiva para placa/estenosis.</span></div>
+                <div class="glossary-item"><span class="glossary-term">ACI / ICA</span><span class="glossary-def">Angiografia coronaria invasiva.</span></div>
+                <div class="glossary-item"><span class="glossary-term">GDMT / TMDG</span><span class="glossary-def">Tratamiento medico dirigido por guias.</span></div>
+                <div class="glossary-item"><span class="glossary-term">FEVI / LVEF</span><span class="glossary-def">Fraccion de eyeccion del ventriculo izquierdo.</span></div>
+                <div class="glossary-item"><span class="glossary-term">DAPT / TAPD</span><span class="glossary-def">Doble antiagregacion plaquetaria.</span></div>
+                <div class="glossary-item"><span class="glossary-term">SAPT</span><span class="glossary-def">Monoterapia antiagregante plaquetaria.</span></div>
+                <div class="glossary-item"><span class="glossary-term">FFR / RFF</span><span class="glossary-def">Reserva fraccional de flujo; significativa si suele ser <=0.80.</span></div>
+                <div class="glossary-item"><span class="glossary-term">iFR</span><span class="glossary-def">Indice instantaneo libre de ondas; significativo si suele ser <=0.89.</span></div>
+                <div class="glossary-item"><span class="glossary-term">CFR / RFC</span><span class="glossary-def">Reserva de flujo coronario; ayuda a valorar disfuncion microvascular.</span></div>
+                <div class="glossary-item"><span class="glossary-term">IMR</span><span class="glossary-def">Indice de resistencia microvascular.</span></div>
+                <div class="glossary-item"><span class="glossary-term">ANOCA</span><span class="glossary-def">Angina con arterias coronarias no obstructivas.</span></div>
+                <div class="glossary-item"><span class="glossary-term">INOCA</span><span class="glossary-def">Isquemia con arterias coronarias no obstructivas.</span></div>
+                <div class="glossary-item"><span class="glossary-term">PET / SPECT / RMC</span><span class="glossary-def">Imagen funcional para isquemia y perfusion miocardica.</span></div>
+                <div class="glossary-item"><span class="glossary-term">PCI / ICP</span><span class="glossary-def">Intervencion coronaria percutanea.</span></div>
+                <div class="glossary-item"><span class="glossary-term">CABG</span><span class="glossary-def">Cirugia de bypass coronario.</span></div>
+                <div class="glossary-item"><span class="glossary-term">DA / LAD</span><span class="glossary-def">Arteria descendente anterior / left anterior descending.</span></div>
+                <div class="glossary-item"><span class="glossary-term">SYNTAX</span><span class="glossary-def">Puntaje anatomico de complejidad coronaria.</span></div>
+                <div class="glossary-item"><span class="glossary-term">LDL</span><span class="glossary-def">Colesterol LDL, objetivo clave de prevencion secundaria.</span></div>
+                <div class="glossary-item"><span class="glossary-term">PCSK9</span><span class="glossary-def">Farmacos hipolipemiantes potentes usados si no se alcanza meta con estatina/ezetimiba.</span></div>
+                <div class="glossary-item"><span class="glossary-term">SGLT2 / GLP-1 RA</span><span class="glossary-def">Terapias cardiometabolicas con beneficio en diabetes, IC, ERC u obesidad seleccionada.</span></div>
+                <div class="glossary-item"><span class="glossary-term">CCS</span><span class="glossary-def">Canadian Cardiovascular Society; clasifica severidad funcional de angina I-IV.</span></div>
+              </div>
+            </div>
+          `}
+        ]
+      },
+      {
+        id:'c2',
+        nav:'S2',
+        area:'cardio',
+        label:'Semana 2',
+        title:'Síndromes coronarios agudos',
+        chips:['Cardiología','Semana 2','Urgencias'],
+        topics:[
+          {n:'a',title:'Diagnóstico'},
+          {n:'b',title:'Clasificación'},
+          {n:'c',title:'Manejo farmacológico e invasivo'},
+          {n:'d',title:'Algoritmos de manejo'}
+        ]
+      },
+      {
+        id:'c3',
+        nav:'S3',
+        area:'cardio',
+        label:'Semana 3',
+        title:'Valvulopatía aórtica',
+        chips:['Cardiología','Semana 3','Válvulas'],
+        topics:[
+          {n:'a',title:'Estenosis aórtica'},
+          {n:'b',title:'Insuficiencia aórtica'}
+        ]
+      },
+      {
+        id:'c4',
+        nav:'S4',
+        area:'cardio',
+        label:'Semana 4',
+        title:'Valvulopatía mitral',
+        chips:['Cardiología','Semana 4','Válvulas'],
+        topics:[
+          {n:'a',title:'Estenosis mitral'},
+          {n:'b',title:'Insuficiencia mitral'}
+        ]
+      },
+      {
+        id:'c5',
+        nav:'S5',
+        area:'cardio',
+        label:'Semana 5',
+        title:'Tromboembolia pulmonar',
+        chips:['Cardiología','Semana 5','TEP'],
+        topics:[
+          {n:'a',title:'Estratificación'},
+          {n:'b',title:'Diagnóstico'},
+          {n:'c',title:'Tratamiento'}
+        ]
+      },
+      {
+        id:'c6',
+        nav:'S6',
+        area:'cardio',
+        label:'Semana 6',
+        title:'Hipertensión pulmonar',
+        chips:['Cardiología','Semana 6','Pulmonar'],
+        topics:[
+          {n:'a',title:'Estratificación'},
+          {n:'b',title:'Clasificación'},
+          {n:'c',title:'Diagnóstico'},
+          {n:'d',title:'Tratamiento'}
+        ]
+      },
+      {
+        id:'c7',
+        nav:'S7',
+        area:'cardio',
+        label:'Semana 7',
+        title:'Enfermedades del pericardio',
+        chips:['Cardiología','Semana 7','Pericardio'],
+        topics:[
+          {n:'a',title:'Etiología'},
+          {n:'b',title:'Diagnóstico'},
+          {n:'c',title:'Tratamiento'}
+        ]
+      },
+      {
+        id:'c8',
+        nav:'S8',
+        area:'cardio',
+        label:'Semana 8',
+        title:'Insuficiencia cardíaca aguda y choque cardiogénico',
+        chips:['Cardiología','Semana 8','IC aguda'],
+        topics:[
+          {n:'a',title:'Definición'},
+          {n:'b',title:'Clasificación'},
+          {n:'c',title:'Tratamiento farmacológico'}
+        ]
+      },
+      {
+        id:'c9',
+        nav:'S9',
+        area:'cardio',
+        label:'Semana 9',
+        title:'Insuficiencia cardíaca crónica',
+        chips:['Cardiología','Semana 9','IC crónica'],
+        topics:[
+          {n:'a',title:'Definición'},
+          {n:'b',title:'Clasificación'},
+          {n:'c',title:'Tratamiento farmacológico'}
+        ]
+      },
+      {
+        id:'c10',
+        nav:'S10',
+        area:'cardio',
+        label:'Semana 10',
+        title:'Arritmias 1',
+        chips:['Cardiología','Semana 10','Arritmias'],
+        topics:[
+          {n:'a',title:'Bradiarritmias'},
+          {n:'b',title:'Síncope'},
+          {n:'c',title:'Marcapaso'}
+        ]
+      },
+      {
+        id:'c11',
+        nav:'S11',
+        area:'cardio',
+        label:'Semana 11',
+        title:'Arritmias 2',
+        chips:['Cardiología','Semana 11','Arritmias'],
+        topics:[
+          {n:'a',title:'Taquicardias'},
+          {n:'b',title:'Resincronización'},
+          {n:'c',title:'DAI'},
+          {n:'d',title:'Canalopatías'}
+        ]
+      },
+      {
+        id:'e1',
+        nav:'ENDO',
+        area:'met',
+        label:'Endocrinología y enfermedades metabólicas',
+        title:'Módulo metabólico',
+        chips:['Endocrinología','Metabólica','Módulo'],
+        topics:[
+          {n:'1',title:'Tumores hipofisiarios'},
+          {n:'2',title:'Dislipidemia y síndrome metabólico'},
+          {n:'3',title:'Diabetes'},
+          {n:'4',title:'Complicaciones agudas y crónicas de la diabetes'},
+          {n:'5',title:'Trastornos tiroideos'},
+          {n:'6',title:'Trastornos del metabolismo mineral y óseo'},
+          {n:'7',title:'Otros trastornos endocrinos'}
+        ]
+      }
+    ]
+  },
+  mi: {
+    label: 'Medicina Interna',
+    sessions: [
+      {
+        id:'gastro',
+        nav:'Gastro',
+        area:'mi',
+        label:'Módulo de Gastroenterología',
+        title:'Gastroenterología',
+        chips:['MI','Gastroenterología','Módulo'],
+        topics:[
+          {n:'1',title:'Trastornos de la deglución',children:[
+            {n:'1.1',title:'Disfagia obstructiva'},
+            {n:'1.2',title:'Disfagia motora'}
+          ]},
+          {n:'2',title:'Enfermedad ácido-péptica',children:[
+            {n:'2.1',title:'Gastritis aguda y crónica'},
+            {n:'2.2',title:'Úlcera péptica'},
+            {n:'2.3',title:'Enfermedad por reflujo gastroesofágico'}
+          ]},
+          {n:'3',title:'Urgencias en gastroenterología',children:[
+            {n:'3.1',title:'Hemorragia de tubo digestivo',children:[
+              {n:'3.1.1',title:'Alto',children:[
+                {n:'3.1.1.1',title:'Variceal'},
+                {n:'3.1.1.2',title:'No variceal'}
+              ]},
+              {n:'3.1.2',title:'Bajo',children:[
+                {n:'3.1.2.1',title:'Enfermedad diverticular'},
+                {n:'3.1.2.2',title:'Screening cáncer de colon'}
+              ]}
+            ]},
+            {n:'3.2',title:'Abdomen agudo no quirúrgico',children:[
+              {n:'3.2.1',title:'Íleo'},
+              {n:'3.2.2',title:'Síndrome de Ogilvie'},
+              {n:'3.2.3',title:'Pancreatitis no biliar',children:[
+                {n:'3.2.3.1',title:'No biliar'},
+                {n:'3.2.3.2',title:'Medicamentosa'}
+              ]},
+              {n:'3.2.4',title:'Enfermedad diverticular'}
+            ]},
+            {n:'3.3',title:'Ingesta de cuerpo extraño'},
+            {n:'3.4',title:'Ingesta de cáusticos'}
+          ]},
+          {n:'4',title:'Hepatopatía aguda y crónica',children:[
+            {n:'4.1',title:'Falla hepática aguda'},
+            {n:'4.2',title:'Cirrosis'}
+          ]},
+          {n:'5',title:'Trastornos de la defecación',children:[
+            {n:'5.1',title:'Diarreas agudas'},
+            {n:'5.2',title:'Diarreas crónicas',children:[
+              {n:'5.2.1',title:'Enfermedad inflamatoria intestinal: Crohn y CUCI'},
+              {n:'5.2.2',title:'Síndrome de intestino irritable'}
+            ]}
+          ]}
+        ]
+      },
+      {
+        id:'neumo',
+        nav:'Neumo',
+        area:'mi',
+        label:'Módulo de Neumología',
+        title:'Neumología',
+        chips:['MI','Neumología','Módulo'],
+        topics:[
+          {n:'1',title:'Falla respiratoria aguda'},
+          {n:'2',title:'Asma'},
+          {n:'3',title:'EPOC'},
+          {n:'4',title:'Infecciones pulmonares agudas y crónicas'},
+          {n:'5',title:'Síndrome de derrame pleural'}
+        ]
+      },
+      {
+        id:'nefro',
+        nav:'Nefro',
+        area:'mi',
+        label:'Módulo de Nefrología',
+        title:'Nefrología',
+        chips:['MI','Nefrología','Módulo'],
+        topics:[
+          {n:'1',title:'Insuficiencia renal aguda'},
+          {n:'2',title:'Insuficiencia renal crónica'},
+          {n:'3',title:'Síndrome nefrótico y glomerulonefritis crónica'},
+          {n:'4',title:'Diálisis y trasplante renal'},
+          {n:'5',title:'Hipertensión arterial'}
+        ]
+      },
+      {
+        id:'reuma',
+        nav:'Reuma',
+        area:'mi',
+        label:'Módulo de Reumatología',
+        title:'Reumatología',
+        chips:['MI','Reumatología','Módulo'],
+        topics:[
+          {n:'1',title:'Abordaje del paciente con dolor musculoesquelético',children:[
+            {n:'a',title:'Historia clínica'},
+            {n:'b',title:'Examen físico'}
+          ]},
+          {n:'2',title:'Artritis por cristales'},
+          {n:'3',title:'Gota'},
+          {n:'4',title:'Pseudogota'},
+          {n:'5',title:'Fibromialgia'},
+          {n:'6',title:'Artritis reumatoide'},
+          {n:'7',title:'Espondiloartropatías'},
+          {n:'8',title:'Lupus eritematoso sistémico y SAF'},
+          {n:'9',title:'Dermatomiositis-polimiositis'},
+          {n:'10',title:'Esclerosis sistémica'},
+          {n:'11',title:'Síndrome de Sjögren'},
+          {n:'12',title:'Artritis psoriásica'}
+        ]
+      },
+      {
+        id:'hema',
+        nav:'Hema',
+        area:'mi',
+        label:'Módulo de Hematología',
+        title:'Hematología',
+        chips:['MI','Hematología','Módulo'],
+        topics:[
+          {n:'1',title:'Anemias',children:[
+            {n:'a',title:'Normocítica'},
+            {n:'b',title:'Microcítica'},
+            {n:'c',title:'Macrocítica'},
+            {n:'d',title:'Hemolítica'}
+          ]},
+          {n:'2',title:'Abordaje del paciente con sangrado',children:[
+            {n:'a',title:'Anormalidades plaquetarias más frecuentes',children:[
+              {n:'i',title:'PTI'}
+            ]},
+            {n:'b',title:'Trastornos de la coagulación',children:[
+              {n:'i',title:'Hemofilia'},
+              {n:'ii',title:'Enfermedad von Willebrand'}
+            ]}
+          ]},
+          {n:'3',title:'Leucemias agudas',children:[
+            {n:'a',title:'LMA'},
+            {n:'b',title:'LLA'},
+            {n:'c',title:'Síndrome mielodisplásico'}
+          ]},
+          {n:'4',title:'Desórdenes linfoproliferativos',children:[
+            {n:'a',title:'Linfoma no Hodgkin'},
+            {n:'b',title:'Enfermedad de Hodgkin'},
+            {n:'c',title:'LLC'}
+          ]},
+          {n:'5',title:'Neoplasias mieloproliferativas',children:[
+            {n:'a',title:'Leucemia mieloide crónica'},
+            {n:'b',title:'Policitemia Vera'},
+            {n:'c',title:'Trombocitosis esencial'},
+            {n:'d',title:'Mielofibrosis primaria'}
+          ]},
+          {n:'6',title:'Enfermedad de células plasmáticas'}
+        ]
+      }
+    ]
+  }
+};
+
+let currentMateria = 'cardio';
+let currentSession = 'c1';
+
+function esc(txt){
+  return String(txt).replace(/[&<>"']/g, ch => ({
+    '&':'&amp;',
+    '<':'&lt;',
+    '>':'&gt;',
+    '"':'&quot;',
+    "'":'&#039;'
+  })[ch]);
+}
+
+function renderTopic(topic, area){
+  const children = topic.children ? `<div class="nested">${topic.children.map(child => renderTopic(child, area)).join('')}</div>` : '';
+  const body = topic.content ? `<div class="topic-content">${topic.content}</div>` : `<div class="placeholder">Pendiente: aquí agregaremos tus notas, tablas, algoritmos y puntos de examen.</div>`;
+  return `
+    <div class="subtopic ${area}">
+      <div class="subtopic-title"><span class="subtopic-n">${esc(topic.n)}</span><span>${esc(topic.title)}</span></div>
+      ${body}
+      ${children}
+    </div>`;
+}
+
+function shouldUseTopicPages(session){
+  return session.area !== 'cardio';
+}
+
+function renderIndexRow(topic, session, idx){
+  return `
+    <button type="button" class="index-row ${session.area}" onclick="showTopicPane('${session.id}',${idx + 1},this)">
+      <span class="index-n">${esc(topic.n)}</span>
+      <span class="index-title">${esc(topic.title)}</span>
+      <span class="index-action">Abrir</span>
+    </button>`;
+}
+
+function renderTopicPane(topic, session, idx){
+  const children = topic.children && topic.children.length
+    ? `<h2>// Subtemas de esta sección</h2><div class="subtopic-list">${topic.children.map(child => renderTopic(child, session.area)).join('')}</div>`
+    : `<div class="empty-note">Pendiente: aquí irá el contenido de este subtema cuando me compartas tus notas.</div>`;
+  return `
+    <div class="tpane" id="${session.id}-t${idx + 1}">
+      <div class="topic-page-head">
+        <div>
+          <div class="topic-page-kicker">${esc(session.label)} · ${esc(topic.n)}</div>
+          <div class="topic-page-title">${esc(topic.title)}</div>
+          <p class="mu">Sección independiente lista para desarrollar con tablas, algoritmos y puntos de examen.</p>
+        </div>
+        <button type="button" class="back-btn" onclick="showTopicPane('${session.id}',0)">Índice</button>
+      </div>
+      ${children}
+    </div>`;
+}
+
+function renderSession(session){
+  const chips = session.chips.map(chip => `<span class="b ${session.area === 'cardio' ? 'br' : session.area === 'met' ? 'bg' : 'bb'}">${esc(chip)}</span>`).join('');
+  const topicPages = shouldUseTopicPages(session);
+  const introCopy = topicPages
+    ? 'Vista general del módulo. Elige un subtema para abrirlo como sección independiente.'
+    : 'Contenido pendiente. Este bloque queda preparado para recibir tus resúmenes y notas.';
+  const body = topicPages
+    ? `<h2>// Índice del módulo</h2><div class="index-list">${session.topics.map((topic, idx) => renderIndexRow(topic, session, idx)).join('')}</div>`
+    : `<h2>// Subtemas</h2><div class="subtopic-list">${session.topics.map(topic => renderTopic(topic, session.area)).join('')}</div>`;
+  return `
+    <section class="wsec ${session.id === currentSession ? 'active' : ''}" id="${session.id}">
+      <div class="tpane active" id="${session.id}-t0">
+        <div class="study-hero ${session.area}">
+          <div class="wlabel">${esc(session.label)}</div>
+          <div class="wtitle">${esc(session.title)}</div>
+          <p class="mu">${introCopy}</p>
+          <div class="topic-strip">${chips}</div>
+        </div>
+        ${body}
+      </div>
+      ${topicPages ? session.topics.map((topic, idx) => renderTopicPane(topic, session, idx)).join('') : ''}
+    </section>`;
+}
+
+function renderAll(){
+  const content = document.getElementById('content');
+  content.innerHTML = Object.values(syllabus).flatMap(m => m.sessions).map(renderSession).join('');
+  renderSessionNav('cardio');
+  renderSessionNav('mi');
+  buildNav(currentSession);
+}
+
+function renderSessionNav(materia){
+  const box = document.getElementById(`${materia}-sessions`);
+  box.innerHTML = syllabus[materia].sessions.map(session => `
+    <button type="button" class="wbtn ${session.id === currentSession ? 'active' : ''}" onclick="showWeek('${session.id}',this)" title="${esc(session.title)}">${esc(session.nav)}</button>
+  `).join('');
+}
+
+function findSession(sessionId){
+  for(const [materiaId, materia] of Object.entries(syllabus)){
+    const session = materia.sessions.find(s => s.id === sessionId);
+    if(session) return {materiaId, session};
+  }
+  return null;
+}
+
+function showMateria(materia){
+  currentMateria = materia;
+  const fallback = syllabus[materia].sessions[0].id;
+  const visible = findSession(currentSession);
+  if(!visible || visible.materiaId !== materia) currentSession = fallback;
+
+  document.querySelectorAll('.mtab').forEach(tab => tab.classList.remove('active'));
+  const activeTab = document.getElementById(`mtab-${materia}`);
+  if(activeTab) activeTab.classList.add('active');
+
+  document.getElementById('cardio-sessions').style.display = materia === 'cardio' ? 'flex' : 'none';
+  document.getElementById('mi-sessions').style.display = materia === 'mi' ? 'flex' : 'none';
+  document.getElementById('bar-current').textContent = syllabus[materia].label;
+  showWeek(currentSession);
+}
+
+function showWeek(sessionId, btn){
+  const found = findSession(sessionId);
+  if(!found) return;
+  currentMateria = found.materiaId;
+  currentSession = sessionId;
+
+  document.querySelectorAll('.wsec').forEach(sec => sec.classList.remove('active'));
+  const section = document.getElementById(sessionId);
+  if(section) section.classList.add('active');
+  if(section){
+    section.querySelectorAll(':scope > .tpane').forEach(pane => pane.classList.remove('active'));
+    const firstPane = section.querySelector(':scope > .tpane');
+    if(firstPane) firstPane.classList.add('active');
+  }
+
+  document.querySelectorAll('.wbtn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.wbtn').forEach(b => {
+    if(b.getAttribute('onclick') && b.getAttribute('onclick').includes(`'${sessionId}'`)) b.classList.add('active');
+  });
+
+  document.querySelectorAll('.mtab').forEach(tab => tab.classList.remove('active'));
+  const activeTab = document.getElementById(`mtab-${found.materiaId}`);
+  if(activeTab) activeTab.classList.add('active');
+  document.getElementById('cardio-sessions').style.display = found.materiaId === 'cardio' ? 'flex' : 'none';
+  document.getElementById('mi-sessions').style.display = found.materiaId === 'mi' ? 'flex' : 'none';
+  document.getElementById('bar-current').textContent = `${syllabus[found.materiaId].label} · ${found.session.nav}`;
+  buildNav(sessionId);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function buildNav(sessionId){
+  const found = findSession(sessionId);
+  const nav = document.getElementById('subnav');
+  if(!found || !nav) return;
+  const clickFn = shouldUseTopicPages(found.session) ? 'showTopicPane' : 'scrollToSubtopic';
+  nav.innerHTML = `<button type="button" class="tbtn active" onclick="${clickFn}('${sessionId}',0,this)">Vista general</button>` +
+    found.session.topics.map((topic, i) => `<button type="button" class="tbtn" onclick="${clickFn}('${sessionId}',${i + 1},this)">${esc(topic.n)} · ${esc(topic.title)}</button>`).join('');
+}
+
+function showTopicPane(sessionId,index,btn){
+  const section = document.getElementById(sessionId);
+  if(!section) return;
+  section.querySelectorAll(':scope > .tpane').forEach(pane => pane.classList.remove('active'));
+  const target = document.getElementById(`${sessionId}-t${index}`);
+  if(target) target.classList.add('active');
+
+  const nav = document.getElementById('subnav');
+  if(nav){
+    nav.querySelectorAll('.tbtn').forEach((button, i) => button.classList.toggle('active', i === index));
+  }
+  if(btn && btn.classList.contains('tbtn')){
+    btn.classList.add('active');
+  }
+  const found = findSession(sessionId);
+  if(found){
+    const label = index === 0 ? found.session.nav : `${found.session.nav} · ${found.session.topics[index - 1]?.title || ''}`;
+    document.getElementById('bar-current').textContent = `${syllabus[found.materiaId].label} · ${label}`;
+  }
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function scrollToSubtopic(sessionId,index,btn){
+  document.querySelectorAll('.tbtn').forEach(b => b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  const section = document.getElementById(sessionId);
+  if(!section) return;
+  const target = index === 0 ? section.querySelector('.study-hero') : section.querySelectorAll(':scope .subtopic-list > .subtopic')[index - 1];
+  if(!target) return;
+  const offset = (document.querySelector('.wnav')?.offsetHeight || 0) + (document.querySelector('.tnav-wrap')?.offsetHeight || 0) + 14;
+  const top = target.getBoundingClientRect().top + window.scrollY - offset;
+  window.scrollTo({top:Math.max(0, top),behavior:'smooth'});
+}
+
+function toggleTheme(cb){
+  const dark = cb ? cb.checked : document.documentElement.getAttribute('data-theme') === 'dark';
+  document.documentElement.setAttribute('data-theme', dark ? 'dark' : '');
+  const lbl = document.getElementById('theme-lbl');
+  if(lbl) lbl.textContent = dark ? '☽ Oscuro' : '☀ Claro';
+  try{ localStorage.setItem('mi-theme', dark ? 'dark' : 'light'); }catch(e){}
+}
+
+function collectText(topic, arr=[]){
+  arr.push(`${topic.n} ${topic.title}`);
+  if(topic.content) arr.push(topic.content.replace(/<[^>]*>/g,' '));
+  if(topic.children) topic.children.forEach(child => collectText(child, arr));
+  return arr;
+}
+
+function buildSearchIndex(){
+  const entries = [];
+  Object.entries(syllabus).forEach(([materiaId, materia]) => {
+    materia.sessions.forEach(session => {
+      entries.push({
+        materiaId,
+        wid: session.id,
+        pane: 0,
+        label: `${materia.label} › ${session.nav}`,
+        title: session.title,
+        text: `${materia.label} ${session.label} ${session.title} ${session.chips.join(' ')} ${session.topics.flatMap(t => collectText(t)).join(' ')}`,
+        topics: session.topics.flatMap(t => collectText(t))
+      });
+      if(shouldUseTopicPages(session)){
+        session.topics.forEach((topic, idx) => {
+          const topicText = collectText(topic).join(' ');
+          entries.push({
+            materiaId,
+            wid: session.id,
+            pane: idx + 1,
+            label: `${materia.label} › ${session.nav} › ${topic.n}`,
+            title: topic.title,
+            text: `${materia.label} ${session.label} ${session.title} ${topicText}`,
+            topics: collectText(topic)
+          });
+        });
+      }
+    });
+  });
+  return entries;
+}
+
+function highlight(text,q){
+  let out = esc(text);
+  q.split(/\s+/).filter(Boolean).forEach(term => {
+    const safe = term.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+    out = out.replace(new RegExp(`(${safe})`,'gi'),'<mark>$1</mark>');
+  });
+  return out;
+}
+
+function setupSearch(){
+  const index = buildSearchIndex();
+  const input = document.getElementById('srch');
+  const box = document.getElementById('srch-results');
+  const count = document.getElementById('srch-count');
+  if(!input || !box || !count) return;
+  let debounce;
+  input.addEventListener('input', () => {
+    clearTimeout(debounce);
+    const q = input.value.trim();
+    if(q.length < 2){
+      box.style.display = 'none';
+      count.textContent = '';
+      return;
+    }
+    debounce = setTimeout(() => {
+      const terms = q.toLowerCase().split(/\s+/).filter(Boolean);
+      const results = index.filter(item => terms.every(term => item.text.toLowerCase().includes(term))).slice(0,20);
+      count.textContent = `${results.length}${results.length === 20 ? '+' : ''} resultados`;
+      box.innerHTML = results.length ? results.map((item, i) => {
+        const snip = item.topics.find(t => terms.some(term => t.toLowerCase().includes(term))) || item.text.slice(0,90);
+        return `<div class="srch-result-item" data-id="${esc(item.wid)}" data-pane="${item.pane}">
+          <div class="srch-result-week">${highlight(item.label,q)}</div>
+          <div class="srch-result-title">${highlight(item.title,q)}</div>
+          <div class="srch-result-snip">${highlight(snip,q)}</div>
+        </div>`;
+      }).join('') : `<div class="srch-result-item"><div class="srch-result-title">Sin resultados para "${esc(q)}"</div></div>`;
+      box.style.display = 'block';
+      box.querySelectorAll('[data-id]').forEach(el => {
+        el.addEventListener('click', () => {
+          const id = el.getAttribute('data-id');
+          const pane = Number(el.getAttribute('data-pane') || 0);
+          const found = findSession(id);
+          if(found) showMateria(found.materiaId);
+          showWeek(id);
+          if(found && shouldUseTopicPages(found.session)) showTopicPane(id,pane);
+          input.value = '';
+          box.style.display = 'none';
+          count.textContent = '';
+        });
+      });
+    },160);
+  });
+  input.addEventListener('keydown', e => {
+    if(e.key === 'Escape'){
+      input.value = '';
+      box.style.display = 'none';
+      count.textContent = '';
+    }
+  });
+  document.addEventListener('click', e => {
+    if(!e.target.closest('#srchbar')) box.style.display = 'none';
+  });
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  try{
+    const saved = localStorage.getItem('mi-theme');
+    if(saved === 'dark'){
+      document.documentElement.setAttribute('data-theme','dark');
+      const cb = document.getElementById('themeToggle');
+      if(cb) cb.checked = true;
+      const lbl = document.getElementById('theme-lbl');
+      if(lbl) lbl.textContent = '☽ Oscuro';
+    }
+  }catch(e){}
+  renderAll();
+  setupSearch();
+});
+</script>
+</body>
+</html>
